@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+--> 
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MANUs Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect.
+  -->
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+  <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .invisible{
+        display: none;
+        width: 0px;
+
+      }
+      .visible{
+        display: inherit;
+        height: 100%;
+        float: right;
+        width: 390px;
+        overflow: auto;
+        color: azure;
+        background: #3c8dbc;
+        text-align: center;
+      }
+
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
+        height: 0%;
+        float: right;
+        width: 0px;
+        overflow: auto;
+        color: azure;
+        background: #3c8dbc;
+        text-align: center;
+      }
+      table.adp-placemark{
+        background: #367fa9;
+      }
+      td.adp-text{
+        color: azure;
+      }
+      td.adp-substep{
+        color: azure;
+      }
+      div.adp-summary{
+        color: azure;
+      }
+
+      #map {
+        height: 600px;
+        width: 900px;
+      }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b></b>❤</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Red MANU</b> </span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Navegación</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa ion-android-list"></i>
+              <span class="label label-success"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Reportes del Negocio</li>
+              <li>
+                <!-- inner menu: contains the messages -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="#">
+                      <div class="pull-left">
+                        <!-- User Image -->
+                        <img src="dist/img/atdcopia.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <!-- Message title and timestamp -->
+                      <h4>
+                        Ana Teresa Alvarez 
+                        <small><i class="fa fa-clock-o"></i> ID: 343496 </small>
+                      </h4>
+                      <!-- The message -->
+                      <p>Mi Red</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                </ul>
+                <!-- /.menu -->
+              </li>
+              <li class="footer"><a href="#">Ver </a></li>
+            </ul>
+          </li>
+          <!-- /.messages-menu -->
+
+          <!-- Notifications Menu -->
+          <li class="dropdown notifications-menu">
+            <!-- Menu toggle button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Notificaciones</li>
+              <li>
+                <!-- Inner Menu: contains the notifications -->
+                <ul class="menu">
+                  <li><!-- start notification -->
+                    <a href="#">
+                      <i class="fa ion-information-circled text-aqua"></i> Pedidos: 0
+                    </a>
+                  </li>
+                  <!-- end notification -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">Ver Todo</a></li>
+            </ul>
+          </li>
+          <!-- Tasks Menu -->
+          <li class="dropdown tasks-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa ion-cash"></i>
+              <span class="label label-danger"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">Recaudación Total</li>
+              <li>
+                <!-- Inner menu: contains the tasks -->
+                <ul class="menu">
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <!-- Task title and progress text -->
+                      <h3>
+                        Total de Ventas: 0
+                        <small class="pull-right">0%</small>
+                      </h3>
+                      <!-- The progress bar -->
+                      <div class="progress xs">
+                        <!-- Change the css width attribute to simulate progress -->
+                        <div class="progress-bar progress-bar-aqua" style="width: 0%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">0% Completo</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                </ul>
+              </li>
+              <li class="footer">
+                <a data-toggle="modal" id="myBtn" href="">Ver Detalle</a>
+              </li>
+            </ul>
+          </li>
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="dist/img/avatar.png" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs"> </span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="user-header">
+                <img src="dist/img/logo1.png" class="img-circle" alt="User Image">
+
+                <p>
+                  Ana Teresa Alvarez -  
+                  <small>Red León XIII</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Micro</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">MANUs</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Indicadores Financieros</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="dist/img/logo1.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Ana Teresa Alvarez</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i>Red León XIII</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Buscar Unidad...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <li class="header">Perfil</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="javascript:load_home1();"><i class="fa ion-map"></i> <span>Mi Red</span></a></li>
+        <li><a href="javascript:load_stock();"><i class="ion-wifi"></i> <span>Productos</span></button></li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa ion-settings"></i> <span>Mi Negocio</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           <li><a href="javascript:load_home6();">Solicitudes Afiliación</a></li>
+            <li><a href="javascript:load_home2();">Red MANU</a></li>
+            <li><a href="javascript:load_home4();">Pedidos</li>
+            <li><a href="javascript:load_home5();">Proyecciones</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+    <!-- Main content -->
+    <section id="content" class="content">
+    <div id="map"></div>
+
+      <!-- Your Page Content Here -->
+    <!--<div id="right-panel">
+      <p>Distancia Total: <span id="total"></span></p>
+      <button id="btnCalc" class="btn btn-primary">Iniciar Ruta</button>
+      <button id="btnCalc2" class="btn btn-danger" onclick="cleanMap()">Eliminar Ruta</button>
+    </div>
+
+
+    <div id="map"></div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Plataforma de Control
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2017 <a href="#">Nutrivida</a>.</strong> Todos los derechos reservados.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading"></h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript::;">
+              
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading"></h4>
+
+                <p></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab"></div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading"></h3>
+
+            
+              
+            </label>
+
+            <p>
+              
+            </p>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+<script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var map;
+      var infoWindow;
+      var service;
+
+      var waypts=[];
+      var ways=[];
+      function initMap() {
+        var geocoder = new google.maps.Geocoder();
+
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 9.959844,  lng: -84.098283},    
+          zoom: 15,
+          scaleControl: true,
+          scaleControlOptions: {
+            style: google.maps.MapTypeControlStyle.BOTTOM_CENTER
+          },
+          styles:[
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#aee2e0"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#abce83"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#769E72"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#7B8758"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#EBF4A4"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#8dab68"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#5B5B3F"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ABCE83"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#A4C67D"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#9BBF72"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#EBF4A4"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#87ae79"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#7f2200"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "visibility": "on"
+            },
+            {
+                "weight": 4.1
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#495421"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    }
+]
+        });
+
+       google.maps.event.addListener(map, 'click', function(e) {
+          placeMarker(e.latLng, map);
+          var input=e.latLng;
+          var lat = parseFloat(input.lat());
+          var lng = parseFloat(input.lng());
+          var latlng = new google.maps.LatLng(lat, lng);
+          geocoder.geocode({'latLng': latlng}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  var add=results[1].formatted_address;
+                  waypts.push({
+                      location:add,
+                      stopover:true
+                  });
+                  //alert(JSON.stringify(waypts));
+                  if(waypts.length>2) {
+                    ways = [];
+                    for ( var i = 1; i <= waypts.length - 2 ; i++) {
+                       ways.push({
+                         location:waypts[i].location,
+                         stopover:true
+                       });
+                    }
+                  }
+                  makeroute(waypts);
+              }
+          });
+        });
+
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+        directionsDisplay.addListener('directions_changed', function() {
+          computeTotalDistance(directionsDisplay.getDirections());
+        });
+        var change = function(){
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        }
+        var cleanMap = function(){
+          document.getElementById('total').innerHTML = ' ';
+          waypts = [];
+          ways = [];
+          directionsDisplay.setDirections({routes: []});
+        }
+        // var appear = function(){
+        //   document.getElementById("right-panel").className = "visible";
+        // }
+
+        document.getElementById("btnCalc").onclick = function() {change()};
+        document.getElementById("btnCalc2").onclick = function() {cleanMap()};
+        infoWindow = new google.maps.InfoWindow();
+        service = new google.maps.places.PlacesService(map);
+
+        // The idle event is a debounced event, so we can query & listen without
+        // throwing too many requests at the server.
+        map.addListener('idle', performSearch);
+        //map.addListener('click', appear);
+        
+
+
+        function makeroute(waypts){
+            var directionsDisplay;
+            var directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer({
+                suppressMarkers: false, //false it if you want a marker from the direction service
+                polylineOptions: {
+                    strokeColor: '#3498db', //"black",
+                    strokeOpacity: 3.9,
+                    strokeWeight: 5
+                }
+            });
+
+            var start = waypts[0].location;//"Bopal, Ahmedabad, Gujarat, India";
+            var end = waypts[waypts.length-1].location;//"Nikol, Ahmedabad, Gujarat, India";
+
+            if(waypts.length>1) {
+                  var request = {
+                     origin:start,
+                     destination:end,
+                     waypoints:ways,
+                     travelMode: google.maps.DirectionsTravelMode.DRIVING
+                   };
+                // directionsService.route(request, function(response, status) {
+                //     if (status == google.maps.DirectionsStatus.OK) {
+                //         directionsDisplay.setDirections(response);
+                //     }
+                // });
+
+                //directionsDisplay.setMap(map);
+                
+            }
+        }
+
+      function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            icon: {
+              url: 'truck.png',
+              anchor: new google.maps.Point(18, 18),
+              scaledSize: new google.maps.Size(38, 38)
+            },
+            map: map
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.setContent('<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Unidad 168</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Nutrivida</b>' + '' +
+            'Gerente de Operaciones de la red: Angie Sandí'+
+            '</div>'+
+            '</div>');
+            infoWindow.open(map, marker);
+          });
+        }
+
+
+      }
+
+
+    
+      function performSearch() {
+        var request = {
+          bounds: map.getBounds(),
+          type: ['accounting']
+          
+          
+        };
+        service.radarSearch(request, callback);
+      }
+    
+      function callback(results, status) {
+        
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
+        }
+        for (var i = 0, result; result = results[i]; i++) {
+          addMarker(result);
+        }
+        
+      }
+
+      function addMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location,
+          icon: {
+            url: 'market.png',
+            anchor: new google.maps.Point(28, 28),
+            scaledSize: new google.maps.Size(28, 28)
+          }
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          service.getDetails(place, function(result, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+              console.error(status);
+              return;
+            }
+            infoWindow.setContent(result.name);
+            infoWindow.open(map, marker);
+          });
+        });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+          var start = waypts[0].location;
+          var end = waypts[waypts.length-1].location;
+          directionsService.route({
+            origin: start,
+            destination: end,
+            waypoints: ways,
+            avoidTolls: true,
+            travelMode: 'DRIVING'
+          }, function(response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+      } 
+
+      function computeTotalDistance(result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+          total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        document.getElementById('total').innerHTML = total + ' Km';
+      }
+
+      function load_stock(){
+        document.getElementById("content").innerHTML='<object type="text/html" style="display: initial;width:100%;height:550px" data="stock.html" ></object>';
+      }
+
+
+      function load_home4(){
+        document.getElementById("content").innerHTML='<object type="text/html" style="width:100%;height:550px" data="index7.html" ></object>';
+        document.getElementById("content-head").className = "content-header";
+      }
+      function load_home2(){
+        document.getElementById("content").innerHTML='<object type="text/html" style="width:100%;height:550px" data="index6.html" ></object>';
+        document.getElementById("content-head").className = "content-header";
+      }
+      function load_home5(){
+        document.getElementById("content").innerHTML='<object type="text/html" style="width:100%;height:550px" data="index8.html" ></object>';
+        document.getElementById("content-head").className = "content-header";
+      }
+      function load_home6(){
+        document.getElementById("content").innerHTML='<object type="text/html" style="width:100%;height:550px" data="index9.html" ></object>';
+        document.getElementById("content-head").className = "content-header";
+      }
+
+    </script>
+<!-- REQUIRED JS SCRIPTS -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1PfBINttU4uDvPStIJ87GoOgdLCuTBhQ&callback=initMap&traffic_model=best_guess&libraries=places,visualization&language=es&region=CR" async defer></script>
+
+
+
+
+<!-- jQuery 2.2.3 -->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="dist/js/modal.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42796169-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42796169-5');
+</script>
+
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+</body>
+</html>
